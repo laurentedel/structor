@@ -86,8 +86,8 @@ security, you'll need to kinit before you run any hadoop commands.
 
 in /etc/hosts:
 ```
-240.0.0.10 gw.example.com
-240.0.0.11 nn.example.com
+240.0.0.10 gw.example.com ambari.example.com
+240.0.0.11 nn.example.com master.example.com
 240.0.0.12 slave1.example.com
 240.0.0.13 slave2.example.com
 240.0.0.14 slave3.example.com
