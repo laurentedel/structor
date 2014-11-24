@@ -19,6 +19,11 @@ The currently supported projects:
 
 We'd love to support Tez, HBase, Storm, etc. as well.
 
+## Dependencies
+* (VirtualBox)[https://www.virtualbox.org/wiki/Downloads] or (VMware Fusion)[http://www.vmware.com/products/fusion/]
+* (Vagarant)[https://docs.vagrantup.com/v2/installation/]
+  * plugin: (Vagrant Cachier)[https://github.com/fgrehm/vagrant-cachier] vagrant plugin install vagrant-cachier
+
 ## Modify the cluster
 
 Structor supports profiles that control the configuration of the
