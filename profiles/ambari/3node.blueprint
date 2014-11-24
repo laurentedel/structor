@@ -71,7 +71,7 @@
       "cardinality" : "1"
     },
     {
-      "name" : "master",
+      "name" : "namenode",
       "components" : [
         {
           "name" : "ZOOKEEPER_SERVER"
@@ -119,7 +119,7 @@
       "cardinality" : "1"
     },
     {
-      "name" : "slave",
+      "name" : "datanode",
       "components" : [
         {
           "name" : "ZOOKEEPER_SERVER"

@@ -7,11 +7,11 @@
       "hosts":[ { "fqdn":"gw.example.com" } ] 
     },
     { 
-      "name":"master",
+      "name":"namenode",
       "hosts":[ { "fqdn":"nn.example.com" } ] 
     },
     { 
-      "name":"master",
+      "name":"datanode",
       "hosts":[ { "fqdn":"dn1.example.com" } ] 
     } 
   ]
