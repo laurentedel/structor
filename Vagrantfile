@@ -43,9 +43,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "omalley/centos6_x64"
 
-  if Vagrant.has_plugin?("vagrant-cachier")
-    config.cache.scope = :box
-  end
+#  if Vagrant.has_plugin?("vagrant-cachier")
+#    config.cache.scope = :box
+#  end
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", profile[:vm_mem] ]
