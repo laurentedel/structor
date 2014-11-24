@@ -1,0 +1,38 @@
+#!/bin/bash
+
+MINPARAMS=1
+
+if [ $# -lt "$MINPARAMS" ]; then
+  echo -e "Usage: $0 <ambari-profile-name>\n"
+  exit 0
+fi
+
+ProfileName=$1
+ProfilePath="profiles/ambari/${ProfileName}.profile"
+BlueprintPath="profiles/ambari/${ProfileName}.blueprint"
+HostmapPath="profiles/ambari/${ProfileName}.hostmap"
+
+if [[ ! -f $ProfilePath ]]; then
+  echo "Profile ${ProfileName} not found. Exiting."
+  exit 0
+fi
+if [[ ! -f $BlueprintPath ]]; then
+  echo "Blueprint ${ProfileName} not found. Exiting."
+  exit 0
+fi
+if [[ ! -f $HostmapPath ]]; then
+  echo "Hostmap ${ProfileName} not found. Exiting."
+  exit 0
+fi
+echo "Provisioning ${ProfileName} Ambari cluster"
+
+if [ -L current.profile ]; then
+  rm -f current.profile
+  ln -s $ProfilePath current.profile
+fi
+
+vagrant up
+
+echo "Applying ${ProfileName} Ambari blueprint"
+curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/blueprints/hdp-blueprint -d @${BlueprintPath}
+curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/clusters/hdp-cluster -d @${HostmapPath}
