@@ -1,6 +1,10 @@
 # Structor
 =======
 
+My personal fork of the Structor project, modified to automatically provision clusters via Ambari Blueprints via a wrapper script called 'ambari-cluster'
+
+**Find the original project [here](https://github.com/hortonworks/structor).**
+
 Vagrant files for creating virtual multi-node Hadoop clusters on various OSes,
 both with and without security.
 
@@ -22,7 +26,7 @@ We'd love to support Tez, HBase, Storm, etc. as well.
 ## Dependencies
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) or [VMware Fusion](http://www.vmware.com/products/fusion/)
 * [Vagarant](https://docs.vagrantup.com/v2/installation/)
-  * plugin: [Vagrant Cachier](https://github.com/fgrehm/vagrant-cachier) vagrant plugin install vagrant-cachier
+  * plugin: [Vagrant Cachier](https://github.com/fgrehm/vagrant-cachier) vagrant plugin install vagrant-cachier (currently disabled)
 
 ## Modify the cluster
 

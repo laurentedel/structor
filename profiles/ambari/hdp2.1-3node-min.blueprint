@@ -20,28 +20,22 @@
           "name" : "HISTORYSERVER"
         },
         {
-          "name" : "HIVE_SERVER"
-        },
-        {
-          "name" : "HCAT"
-        },
-        {
           "name" : "SECONDARY_NAMENODE"
         },
         {
-          "name" : "TEZ_CLIENT"
+          "name" : "HIVE_METASTORE"
         },
         {
-          "name" : "HIVE_METASTORE"
+          "name" : "HIVE_SERVER"
+        },
+        {
+          "name" : "TEZ_CLIENT"
         },
         {
           "name" : "APP_TIMELINE_SERVER"
         },
         {
           "name" : "HDFS_CLIENT"
-        },
-        {
-          "name" : "HIVE_CLIENT"
         },
         {
           "name" : "NODEMANAGER"
@@ -62,9 +56,6 @@
           "name" : "GANGLIA_MONITOR"
         },
         {
-          "name" : "WEBHCAT_SERVER"
-        },
-        {
           "name" : "RESOURCEMANAGER"
         }
       ],
@@ -83,9 +74,6 @@
           "name" : "NAMENODE"
         },
         {
-          "name" : "HCAT"
-        },
-        {
           "name" : "NAGIOS_SERVER"
         },
         {
@@ -96,9 +84,6 @@
         },
         {
           "name" : "HDFS_CLIENT"
-        },
-        {
-          "name" : "HIVE_CLIENT"
         },
         {
           "name" : "NODEMANAGER"
@@ -131,16 +116,10 @@
           "name" : "NODEMANAGER"
         },
         {
-          "name" : "HIVE_CLIENT"
-        },
-        {
           "name" : "HDFS_CLIENT"
         },
         {
           "name" : "YARN_CLIENT"
-        },
-        {
-          "name" : "HCAT"
         },
         {
           "name" : "MAPREDUCE2_CLIENT"
