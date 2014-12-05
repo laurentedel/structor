@@ -101,8 +101,10 @@ in /etc/hosts:
 | NameNode    | http://nn.example.com:50070/ | https://nn.example.com:50470/ |
 | ResourceMgr | http://nn.example.com:8088/  | https://nn.example.com:8090/  |
 | JobHistory  | http://nn.example.com:19888/ | https://nn.example.com:19890/ |
- 
-### Set up Kerberos (for security - **untested for Ambari clusters**)
+
+# Everything below is untested in my fork 
+
+### Set up Kerberos 
 
 in /etc/krb5.conf:
 ```
