@@ -1,32 +1,19 @@
-# Structor
+# HDP-Builder
 =======
 
-My personal fork of the Structor project, modified to automatically provision clusters via Ambari Blueprints via a wrapper script called 'ambari-cluster'
+My fork of **[Hortonworks/structor](https://github.com/hortonworks/structor).**
 
-**Find the original project [here](https://github.com/hortonworks/structor).**
 
 Vagrant files for creating virtual multi-node Hadoop clusters on various OSes,
-both with and without security.
+using Ambari Blueprints. Optional Squid caching server for faster provisiong. I
+hope to soon add support for the Vagrant Docker provider.
 
 The currently supported OSes and the providers:
 * centos 6 (virtualbox and vmware_fusion)
 
-We'd like to get Ubuntu and SUSE support as well.
-
-The currently supported projects:
-* HDFS
-* Yarn
-* MapReduce
-* Hive
-* Pig
-* Zookeeper
-
-We'd love to support Tez, HBase, Storm, etc. as well.
-
 ## Dependencies
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) or [VMware Fusion](http://www.vmware.com/products/fusion/)
 * [Vagarant](https://docs.vagrantup.com/v2/installation/)
-  * plugin: [Vagrant Cachier](https://github.com/fgrehm/vagrant-cachier) vagrant plugin install vagrant-cachier (currently disabled)
 
 ## Modify the cluster
 
@@ -37,10 +24,9 @@ create a link in the top level directory named current.profile that
 links to the desired profile.
 
 Current profiles:
-* 1node-nonsecure - a single node non-secure Hadoop cluster
-* 3node-secure - a three node secure Hadoop cluster
-* 5node-nonsecure - a five node secure Hadoop cluster
-* default - a three node non-secure Hadoop cluster
+* hdp2.1-3node-min - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia
+* hdp2.1-3node-full - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia, Storm, Oozie, HBase, Falcon, Sqoop
+* hdp2.2-3node-min - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia (branch hdp-2.2)
 
 You are encouraged to contribute new working profiles that can be
 shared by others.
@@ -54,6 +40,10 @@ The types of control knob in the profile file are:
 For each host in nodes, you define the name, ip address, and the roles for 
 that node. The available roles are:
 
+* ambari-server - Ambari server
+* ambari-client - member of Ambari cluster
+* proxy-server - Squid proxy server for yum caching
+* proxy-client Squid proxy client for yum caching
 * client - client machine
 * kdc - kerberos kdc
 * nn - HDFS NameNode
@@ -74,29 +64,31 @@ This is an example of the current default.profile
   "client_mem": 200,
   "clients" : [ "hdfs", "yarn", "pig", "hive", "zk" ],
   "nodes": [
-    { "hostname": "gw", "ip": "240.0.0.10", "roles": [ "client" ] },
-    { "hostname": "nn", "ip": "240.0.0.11", "roles": [ "kdc", "nn", "yarn", "hive-meta", "hive-db", "zk" ] },
-    { "hostname": "slave1", "ip": "240.0.0.12", "roles": [ "slave" ] }
+    { "hostname": "proxy", "ip": "240.0.0.2", "roles": [ "proxy-server" ] },
+    { "hostname": "gw", "ip": "240.0.0.10", "roles": [ "ambari-server", "ambari-client", "proxy-client" ] },
+    { "hostname": "nn", "ip": "240.0.0.11", "roles": [ "ambari-client", "proxy-client" ] },
+    { "hostname": "dn1", "ip": "240.0.0.12", "roles": [ "ambari-client", "proxy-client" ] }
   ]
 }
 ```
 
 ## Bring up the cluster
 
-Use `vagrant up` to bring up the cluster. This will take 30 to 40 minutes for 
+Use `./ambari-cluster <profile-name>` to bring up the cluster. This will take 30 to 40 minutes for 
 a 3 node cluster depending on your hardware and network connection.
 
 Use `vagrant ssh gw`` to login to the gateway machine. If you configured 
 security, you'll need to kinit before you run any hadoop commands.
 
 ## Set up on Mac
-
+ 
 ### Add host names
 
 in /etc/hosts:
 ```
-240.0.0.10 gw.example.com ambari.example.com
-240.0.0.11 nn.example.com master.example.com
+240.0.0.2 proxy.example.com
+240.0.0.10 gw.example.com
+240.0.0.11 nn.example.com
 240.0.0.12 slave1.example.com
 240.0.0.13 slave2.example.com
 240.0.0.14 slave3.example.com
@@ -109,8 +101,8 @@ in /etc/hosts:
 | NameNode    | http://nn.example.com:50070/ | https://nn.example.com:50470/ |
 | ResourceMgr | http://nn.example.com:8088/  | https://nn.example.com:8090/  |
 | JobHistory  | http://nn.example.com:19888/ | https://nn.example.com:19890/ |
-
-### Set up Kerberos (for security)
+ 
+### Set up Kerberos (for security - **untested for Ambari clusters**)
 
 in /etc/krb5.conf:
 ```

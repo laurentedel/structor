@@ -7,8 +7,9 @@
   "client_mem": 200,
   "clients" : [ ],
   "nodes": [ 
-    { "hostname": "gw",  "ip": "240.0.0.10", "roles": [ "ambari-server", "ambari-agent" ] },
-    { "hostname": "nn",  "ip": "240.0.0.11", "roles": [ "ambari-agent" ] },
-    { "hostname": "dn1",  "ip": "240.0.0.12", "roles": [ "ambari-agent" ] }
+    { "hostname": "proxy", "ip": "240.0.0.2", "roles": [ "proxy-server" ] },
+    { "hostname": "gw",  "ip": "240.0.0.10", "roles": [ "proxy-client", "ambari-server", "ambari-agent" ] },
+    { "hostname": "nn",  "ip": "240.0.0.11", "roles": [ "proxy-client", "ambari-agent" ] },
+    { "hostname": "dn1",  "ip": "240.0.0.12", "roles": [ "proxy-client", "ambari-agent" ] }
   ]
 }

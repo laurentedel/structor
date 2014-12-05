@@ -86,6 +86,13 @@ if hasrole($roles, 'cert') {
    include certification
 }
 
+if hasrole($roles, 'proxy-server') {
+  include proxy_server
+}
+if hasrole($roles, 'proxy-client') {
+  include proxy_client
+}
+
 # Ensure the kdc is brought up before the namenode and hive metastore
 if $security == "true" and hasrole($roles, 'kdc') {
   if hasrole($roles, 'nn') {
