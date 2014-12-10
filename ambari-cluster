@@ -81,11 +81,12 @@ vagrant up
 
 # Allow last VM to register with Ambari Server
 #  (this needs tuning, or a better workaround)
-#sleep 60
+sleep 60
 
-echo "Applying blueprint ${ProfileName}..."
+echo "Applying blueprint..."
 curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/blueprints/hdp-blueprint -d @${BlueprintPath}
 curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/clusters/hdp-cluster -d @${HostmapPath}
+exit 0
 
 ProgressPercent=`curl -s --user admin:admin -H 'X-Requested-By:mycompany' -X GET http://gw.example.com:8080/api/v1/clusters/hdp-cluster/requests/1 | grep progress_percent | awk '{print $3}' | cut -d . -f 1`
 echo " Progress: $ProgressPercent"
