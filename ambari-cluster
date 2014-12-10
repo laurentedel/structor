@@ -22,6 +22,14 @@ HdpVersion=$1
 AmbariVersion=$2
 if [ $3 ]; then ProfileName=$3; else ProfileName='3node-min'; fi
 
+AmbariMinorVersion=`echo $AmbariVersion | awk 'BEGIN { FS = "." } ; { print $2 }'`
+if [[ $AmbariMinorVersion < 6 ]]; then
+  echo "WARNING: Blueprints are only supported by Ambari 1.6.0+"
+  echo "         Cluster will be built, but Blueprint will not be applied."
+  echo "         Press ctrl-c to cancel."
+  echo ""
+fi
+
 ProfilePath="profiles/${ProfileName}.profile"
 HostmapPath="profiles/${ProfileName}.hostmap"
 BlueprintPath="profiles/hdp-$HdpVersion/${ProfileName}.blueprint"
@@ -78,6 +86,9 @@ ls -l files/repos/ambari.repo | awk '{print $9 $10 $11}'
 echo ""
 
 vagrant up
+
+# Exit if using older Ambari that doesn't support Blueprints
+if [[ $AmbariMinorVersion < 6 ]]; then exit 0; fi
 
 # Allow last VM to register with Ambari Server
 #  (this needs tuning, or a better workaround)
