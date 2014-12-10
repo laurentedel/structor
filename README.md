@@ -73,8 +73,8 @@ This is an example of the current default.profile
 ```
 
 ## Bring up the cluster
-
-Use `./ambari-cluster <profile-name>` to bring up the cluster. This will take 30 to 40 minutes for 
+ 
+Use `./ambari-cluster <hdp-version> <ambari-version> [profile-name]` to bring up the cluster. This will take 20 to 40 minutes for 
 a 3 node cluster depending on your hardware and network connection.
 
 Use `vagrant ssh gw`` to login to the gateway machine. If you configured 
