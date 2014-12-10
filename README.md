@@ -23,10 +23,22 @@ directory including a default.profile. To pick a different profile,
 create a link in the top level directory named current.profile that
 links to the desired profile.
 
-Current profiles:
-* hdp2.1-3node-min - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia
-* hdp2.1-3node-full - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia, Storm, Oozie, HBase, Falcon, Sqoop
-* hdp2.2-3node-min - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia (branch hdp-2.2)
+Current HDP versions:
+* HDP 2.0.6
+* HDP 2.1.2
+* HDP 2.2.0
+
+Current Ambari versions:
+* Ambari 1.4.1
+* Ambari 1.5.1
+* Ambari 1.6.1
+* Ambari 1.7.0
+
+Current profiles
+* 1node-min - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia
+* 1node-full - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia, Storm, Oozie, HBase, Falcon, Sqoop
+* 3node-min (default) - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia
+* 3node-full - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia, Storm, Oozie, HBase, Falcon, Sqoop
 
 You are encouraged to contribute new working profiles that can be
 shared by others.
@@ -77,7 +89,7 @@ This is an example of the current default.profile
 Use `./ambari-cluster <hdp-version> <ambari-version> [profile-name]` to bring up the cluster. This will take 20 to 40 minutes for 
 a 3 node cluster depending on your hardware and network connection.
 
-Use `vagrant ssh gw`` to login to the gateway machine. If you configured 
+Use `vagrant ssh gw` to login to the gateway machine. If you configured 
 security, you'll need to kinit before you run any hadoop commands.
 
 ## Set up on Mac
