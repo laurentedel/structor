@@ -1,0 +1,172 @@
+{
+  "configurations" : [
+    {
+      "global" : {
+        "nagios_contact": "email@example.com"
+      }
+    }
+  ],
+  "host_groups" : [
+    {
+      "name" : "gateway",
+      "components" : [
+        {
+          "name" : "PIG"
+        },
+        {
+          "name" : "STORM_REST_API"
+        },
+        {
+          "name" : "OOZIE_CLIENT"
+        },
+        {
+          "name" : "HBASE_CLIENT"
+        },
+        {
+          "name" : "FALCON_SERVER"
+        },
+        {
+          "name" : "HCAT"
+        },
+        {
+          "name" : "AMBARI_SERVER"
+        },
+        {
+          "name" : "HIVE_CLIENT"
+        },
+        {
+          "name" : "HDFS_CLIENT"
+        },
+        {
+          "name" : "NODEMANAGER"
+        },
+        {
+          "name" : "DATANODE"
+        },
+        {
+          "name" : "WEBHCAT_SERVER"
+        },
+        {
+          "name" : "ZOOKEEPER_SERVER"
+        },
+        {
+          "name" : "ZOOKEEPER_CLIENT"
+        },
+        {
+          "name" : "HBASE_MASTER"
+        },
+        {
+          "name" : "STORM_UI_SERVER"
+        },
+        {
+          "name" : "HIVE_SERVER"
+        },
+        {
+          "name" : "OOZIE_SERVER"
+        },
+        {
+          "name" : "FALCON_CLIENT"
+        },
+        {
+          "name" : "NAGIOS_SERVER"
+        },
+        {
+          "name" : "SECONDARY_NAMENODE"
+        },
+        {
+          "name" : "TEZ_CLIENT"
+        },
+        {
+          "name" : "HIVE_METASTORE"
+        },
+        {
+          "name" : "GANGLIA_SERVER"
+        },
+        {
+          "name" : "SQOOP"
+        },
+        {
+          "name" : "YARN_CLIENT"
+        },
+        {
+          "name" : "MAPREDUCE2_CLIENT"
+        },
+        {
+          "name" : "MYSQL_SERVER"
+        },
+        {
+          "name" : "GANGLIA_MONITOR"
+        }
+      ],
+      "cardinality" : "1"
+    },
+    {
+      "name" : "namenode",
+      "components" : [
+        {
+          "name" : "ZOOKEEPER_SERVER"
+        },
+        {
+          "name" : "HISTORYSERVER"
+        },
+        {
+          "name" : "APP_TIMELINE_SERVER"
+        },
+        {
+          "name" : "NAMENODE"
+        },
+        {
+          "name" : "NODEMANAGER"
+        },
+        {
+          "name" : "HDFS_CLIENT"
+        },
+        {
+          "name" : "DATANODE"
+        },
+        {
+          "name" : "GANGLIA_MONITOR"
+        },
+        {
+          "name" : "RESOURCEMANAGER"
+        },
+        {
+          "name" : "NIMBUS"
+        },
+        {
+          "name" : "DRPC_SERVER"
+        }
+      ],
+      "cardinality" : "1"
+    },
+    {
+      "name" : "datanode",
+      "components" : [
+        {
+          "name" : "ZOOKEEPER_SERVER"
+        },
+        {
+          "name" : "HBASE_REGIONSERVER"
+        },
+        {
+          "name" : "SUPERVISOR"
+        },
+        {
+          "name" : "NODEMANAGER"
+        },
+        {
+          "name" : "DATANODE"
+        },
+        {
+          "name" : "GANGLIA_MONITOR"
+        }
+      ],
+      "cardinality" : "1"
+    }
+  ],
+  "Blueprints" : {
+    "blueprint_name" : "hdp-blueprint",
+    "stack_name" : "HDP",
+    "stack_version" : "2.0"
+  }
+}

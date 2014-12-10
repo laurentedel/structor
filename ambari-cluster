@@ -1,48 +1,94 @@
 #!/bin/bash
 
-MINPARAMS=1
+MINPARAMS=2
 
+echo ""
+echo "STRUCTOR - HDP build automation tool"
+echo ""
 if [ $# -lt "$MINPARAMS" ]; then
-  echo -e "Usage: $0 <ambari-profile-name>\n"
+  echo ""
+  echo "Usage: $0 <hdp-version> <ambari-version> [profile-name]"
+  echo ""
+  echo "Available HDP versions:"
+  ls profiles | grep hdp-
+  echo ""
+  echo "Available Ambari versions:"
+  ls profiles | grep ambari-
+  echo ""
   exit 0
 fi
 
-ProfileName=$1
-ProfilePath="profiles/ambari/${ProfileName}.profile"
-BlueprintPath="profiles/ambari/${ProfileName}.blueprint"
-HostmapPath="profiles/ambari/${ProfileName}.hostmap"
+HdpVersion=$1
+AmbariVersion=$2
+if [ $3 ]; then ProfileName=$3; else ProfileName='3node-min'; fi
 
+ProfilePath="profiles/${ProfileName}.profile"
+HostmapPath="profiles/${ProfileName}.hostmap"
+BlueprintPath="profiles/hdp-$HdpVersion/${ProfileName}.blueprint"
+HdpRepoPath="profiles/hdp-$HdpVersion/hdp.repo"
+AmbariRepoPath="profiles/ambari-$AmbariVersion/ambari.repo"
+
+echo "Verifying existence of files..."
 if [[ ! -f $ProfilePath ]]; then
-  echo "Profile ${ProfileName} not found. Exiting."
+  echo " Profile $ProfilePath not found. Exiting."
   exit 0
-fi
-if [[ ! -f $BlueprintPath ]]; then
-  echo "Blueprint ${ProfileName} not found. Exiting."
-  exit 0
+else
+  echo " found $ProfilePath"
 fi
 if [[ ! -f $HostmapPath ]]; then
-  echo "Hostmap ${ProfileName} not found. Exiting."
+  echo " Hostmap $HostmapPath not found. Exiting."
   exit 0
+else
+  echo " found $HostmapPath"
 fi
-echo "Provisioning ${ProfileName} Ambari cluster"
+if [[ ! -f $BlueprintPath ]]; then
+  echo " Blueprint $BlueprintPath not found. Exiting."
+  exit 0
+else
+  echo " found $BlueprintPath"
+fi
+if [[ ! -f $HdpRepoPath ]]; then
+  echo " HDP Repo $HdpRepoPath not found. Exiting."
+  exit 0
+else
+  echo " found $HdpRepoPath"
+fi
+if [[ ! -f $AmbariRepoPath ]]; then
+  echo " Ambari Repo $AmbariRepoPath not found. Exiting."
+  exit 0
+else
+  echo " found $AmbariRepoPath"
+fi
+echo ""
 
-if [ -L current.profile ]; then
-  rm -f current.profile
-fi
+echo "Creating symlinks..."
+if [ -L current.profile ]; then rm -f current.profile; fi
 ln -s $ProfilePath current.profile
+ls -l current.profile | awk '{print $9 $10 $11}'
+
+if [ -L files/repos/hdp.repo ]; then rm -f files/repos/hdp.repo; fi
+if [ -e files/repos/hdp.repo ]; then rm -f files/repos/hdp.repo; fi
+cp -a $HdpRepoPath files/repos/hdp.repo
+ls -l files/repos/hdp.repo | awk '{print $9 $10 $11}'
+
+if [ -L files/repos/ambari.repo ]; then rm -f files/repos/ambari.repo; fi
+if [ -e files/repos/ambari.repo ]; then rm -f files/repos/ambari.repo; fi
+cp -a $AmbariRepoPath files/repos/ambari.repo
+ls -l files/repos/ambari.repo | awk '{print $9 $10 $11}'
+echo ""
 
 vagrant up
 
 # Allow last VM to register with Ambari Server
 #  (this needs tuning, or a better workaround)
-sleep 60
+#sleep 60
 
-echo -n "Applying ${ProfileName} Ambari blueprint..."
+echo "Applying blueprint ${ProfileName}..."
 curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/blueprints/hdp-blueprint -d @${BlueprintPath}
 curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/clusters/hdp-cluster -d @${HostmapPath}
 
 ProgressPercent=`curl -s --user admin:admin -H 'X-Requested-By:mycompany' -X GET http://gw.example.com:8080/api/v1/clusters/hdp-cluster/requests/1 | grep progress_percent | awk '{print $3}' | cut -d . -f 1`
-echo " Progress: $ProgressPercent %"
+echo " Progress: $ProgressPercent"
 
 while [[ `echo $ProgressPercent | grep -v 100` ]]; do
   ProgressPercent=`curl -s --user admin:admin -H 'X-Requested-By:mycompany' -X GET http://gw.example.com:8080/api/v1/clusters/hdp-cluster/requests/1 | grep progress_percent | awk '{print $3}' | cut -d . -f 1`

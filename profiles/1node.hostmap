@@ -1,0 +1,10 @@
+{
+  "blueprint":"hdp-blueprint",
+  "default_password": "admin",
+  "host_groups":[
+    { 
+      "name":"gateway",
+      "hosts":[ { "fqdn":"gw.example.com" } ] 
+    }
+  ]
+}
