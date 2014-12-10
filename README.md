@@ -23,22 +23,10 @@ directory including a default.profile. To pick a different profile,
 create a link in the top level directory named current.profile that
 links to the desired profile.
 
-Current HDP versions:
-* HDP 2.0.6
-* HDP 2.1.2
-* HDP 2.2.0
+## Verified combinations
+The following combinations are tested and verified to result in a working cluster.
 
-Current Ambari versions:
-* Ambari 1.4.1
-* Ambari 1.5.1
-* Ambari 1.6.1
-* Ambari 1.7.0
-
-Current profiles
-* 1node-min - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia
-* 1node-full - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia, Storm, Oozie, HBase, Falcon, Sqoop
-* 3node-min (default) - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia
-* 3node-full - HDFS, YARN, MR2, Zookeeper, Hive, Nagios, Ganglia, Storm, Oozie, HBase, Falcon, Sqoop
+* HDP 2.2.0, Ambari 1.7.0, 3node-min
 
 You are encouraged to contribute new working profiles that can be
 shared by others.
