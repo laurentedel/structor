@@ -28,8 +28,8 @@ echo "Provisioning ${ProfileName} Ambari cluster"
 
 if [ -L current.profile ]; then
   rm -f current.profile
-  ln -s $ProfilePath current.profile
 fi
+ln -s $ProfilePath current.profile
 
 vagrant up
 
