@@ -61,37 +61,37 @@ else
 fi
 echo ""
 
-#echo "Provisioning HDP $HdpVersion cluster with profile $ProfileName using Ambari $AmbariVersion"
-
 echo "Creating symlinks..."
 if [ -L current.profile ]; then rm -f current.profile; fi
 ln -s $ProfilePath current.profile
 ls -l current.profile | awk '{print $9 $10 $11}'
 
 if [ -L files/repos/hdp.repo ]; then rm -f files/repos/hdp.repo; fi
-ln -s $HdpRepoPath files/repos/hdp.repo
+if [ -e files/repos/hdp.repo ]; then rm -f files/repos/hdp.repo; fi
+#ln -s $HdpRepoPath files/repos/hdp.repo
+cp -a $HdpRepoPath files/repos/hdp.repo
 ls -l files/repos/hdp.repo | awk '{print $9 $10 $11}'
 
 if [ -L files/repos/ambari.repo ]; then rm -f files/repos/ambari.repo; fi
-ln -s $AmbariRepoPath files/repos/ambari.repo
+if [ -e files/repos/ambari.repo ]; then rm -f files/repos/ambari.repo; fi
+#ln -s $AmbariRepoPath files/repos/ambari.repo
+cp -a $AmbariRepoPath files/repos/ambari.repo
 ls -l files/repos/ambari.repo | awk '{print $9 $10 $11}'
 echo ""
 
-exit 0
-
-
-vagrant up
+#vagrant up
+#exit 0
 
 # Allow last VM to register with Ambari Server
 #  (this needs tuning, or a better workaround)
-sleep 60
+#sleep 60
 
 echo -n "Applying ${ProfileName} Ambari blueprint..."
 curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/blueprints/hdp-blueprint -d @${BlueprintPath}
 curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/clusters/hdp-cluster -d @${HostmapPath}
 
 ProgressPercent=`curl -s --user admin:admin -H 'X-Requested-By:mycompany' -X GET http://gw.example.com:8080/api/v1/clusters/hdp-cluster/requests/1 | grep progress_percent | awk '{print $3}' | cut -d . -f 1`
-echo " Progress: $ProgressPercent %"
+echo " Progress: $ProgressPercent"
 
 while [[ `echo $ProgressPercent | grep -v 100` ]]; do
   ProgressPercent=`curl -s --user admin:admin -H 'X-Requested-By:mycompany' -X GET http://gw.example.com:8080/api/v1/clusters/hdp-cluster/requests/1 | grep progress_percent | awk '{print $3}' | cut -d . -f 1`
