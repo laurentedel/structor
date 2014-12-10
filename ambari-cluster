@@ -1,35 +1,65 @@
 #!/bin/bash
 
-MINPARAMS=1
+MINPARAMS=2
 
 if [ $# -lt "$MINPARAMS" ]; then
-  echo -e "Usage: $0 <ambari-profile-name>\n"
+  echo ""
+  echo "Usage: $0 <hdp-version> <ambari-version> [profile-name]"
+  echo ""
+  echo "Available HDP versions:"
+  ls profiles | grep hdp-
+  echo ""
+  echo "Available Ambari versions:"
+  ls profiles | grep ambari-
+  echo ""
   exit 0
 fi
+HdpVersion=$1
+AmbariVersion=$2
 
-ProfileName=$1
-ProfilePath="profiles/ambari/${ProfileName}.profile"
-BlueprintPath="profiles/ambari/${ProfileName}.blueprint"
-HostmapPath="profiles/ambari/${ProfileName}.hostmap"
+if [ $3 ]; then
+  ProfileName=$3
+else
+  ProfileName='3node-min'
+fi
+
+ProfilePath="profiles/${ProfileName}.profile"
+HostmapPath="profiles/${ProfileName}.hostmap"
+BlueprintPath="profiles/hdp-$HdpVersion/${ProfileName}.blueprint"
+HdpRepoPath="profiles/hdp-$HdpVersion/hdp.repo"
+AmbariRepoPath="profiles/ambari-$AmbariVersion/ambari.repo"
 
 if [[ ! -f $ProfilePath ]]; then
-  echo "Profile ${ProfileName} not found. Exiting."
-  exit 0
-fi
-if [[ ! -f $BlueprintPath ]]; then
-  echo "Blueprint ${ProfileName} not found. Exiting."
+  echo "Profile $ProfilePath not found. Exiting."
   exit 0
 fi
 if [[ ! -f $HostmapPath ]]; then
-  echo "Hostmap ${ProfileName} not found. Exiting."
+  echo "Hostmap $HostmapPath not found. Exiting."
   exit 0
 fi
-echo "Provisioning ${ProfileName} Ambari cluster"
+if [[ ! -f $BlueprintPath ]]; then
+  echo "Blueprint $BlueprintPath not found. Exiting."
+  exit 0
+fi
+if [[ ! -f $HdpRepoPath ]]; then
+  echo "HDP Repo $HdpRepoPath not found. Exiting."
+  exit 0
+fi
+if [[ ! -f $AmbariRepoPath ]]; then
+  echo "Ambari Repo $AmbariRepoPath not found. Exiting."
+  exit 0
+fi
+
+echo "Provisioning HDP $HdpVersion cluster with profile $ProfileName using Ambari $AmbariVersion"
 
 if [ -L current.profile ]; then
   rm -f current.profile
 fi
 ln -s $ProfilePath current.profile
+
+
+exit 0
+
 
 vagrant up
 
