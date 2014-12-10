@@ -11,28 +11,28 @@
       "name" : "gateway",
       "components" : [
         {
-          "name" : "PIG"
+          "name" : "ZOOKEEPER_SERVER"
         },
         {
-          "name" : "STORM_REST_API"
+          "name" : "ZOOKEEPER_CLIENT"
         },
         {
-          "name" : "OOZIE_CLIENT"
+          "name" : "HISTORYSERVER"
         },
         {
-          "name" : "HBASE_CLIENT"
+          "name" : "SECONDARY_NAMENODE"
         },
         {
-          "name" : "FALCON_SERVER"
+          "name" : "HIVE_METASTORE"
         },
         {
-          "name" : "HCAT"
+          "name" : "HIVE_SERVER"
         },
         {
-          "name" : "AMBARI_SERVER"
+          "name" : "TEZ_CLIENT"
         },
         {
-          "name" : "HIVE_CLIENT"
+          "name" : "APP_TIMELINE_SERVER"
         },
         {
           "name" : "HDFS_CLIENT"
@@ -41,61 +41,22 @@
           "name" : "NODEMANAGER"
         },
         {
-          "name" : "DATANODE"
-        },
-        {
-          "name" : "WEBHCAT_SERVER"
-        },
-        {
-          "name" : "ZOOKEEPER_SERVER"
-        },
-        {
-          "name" : "ZOOKEEPER_CLIENT"
-        },
-        {
-          "name" : "HBASE_MASTER"
-        },
-        {
-          "name" : "STORM_UI_SERVER"
-        },
-        {
-          "name" : "HIVE_SERVER"
-        },
-        {
-          "name" : "OOZIE_SERVER"
-        },
-        {
-          "name" : "FALCON_CLIENT"
-        },
-        {
-          "name" : "NAGIOS_SERVER"
-        },
-        {
-          "name" : "SECONDARY_NAMENODE"
-        },
-        {
-          "name" : "TEZ_CLIENT"
-        },
-        {
-          "name" : "HIVE_METASTORE"
-        },
-        {
-          "name" : "GANGLIA_SERVER"
-        },
-        {
-          "name" : "SQOOP"
-        },
-        {
           "name" : "YARN_CLIENT"
         },
         {
           "name" : "MAPREDUCE2_CLIENT"
         },
         {
+          "name" : "DATANODE"
+        },
+        {
           "name" : "MYSQL_SERVER"
         },
         {
           "name" : "GANGLIA_MONITOR"
+        },
+        {
+          "name" : "RESOURCEMANAGER"
         }
       ],
       "cardinality" : "1"
@@ -107,34 +68,37 @@
           "name" : "ZOOKEEPER_SERVER"
         },
         {
-          "name" : "HISTORYSERVER"
-        },
-        {
-          "name" : "APP_TIMELINE_SERVER"
+          "name" : "ZOOKEEPER_CLIENT"
         },
         {
           "name" : "NAMENODE"
         },
         {
-          "name" : "NODEMANAGER"
+          "name" : "NAGIOS_SERVER"
+        },
+        {
+          "name" : "TEZ_CLIENT"
+        },
+        {
+          "name" : "GANGLIA_SERVER"
         },
         {
           "name" : "HDFS_CLIENT"
+        },
+        {
+          "name" : "NODEMANAGER"
+        },
+        {
+          "name" : "YARN_CLIENT"
+        },
+        {
+          "name" : "MAPREDUCE2_CLIENT"
         },
         {
           "name" : "DATANODE"
         },
         {
           "name" : "GANGLIA_MONITOR"
-        },
-        {
-          "name" : "RESOURCEMANAGER"
-        },
-        {
-          "name" : "NIMBUS"
-        },
-        {
-          "name" : "DRPC_SERVER"
         }
       ],
       "cardinality" : "1"
@@ -146,13 +110,22 @@
           "name" : "ZOOKEEPER_SERVER"
         },
         {
-          "name" : "HBASE_REGIONSERVER"
-        },
-        {
-          "name" : "SUPERVISOR"
+          "name" : "ZOOKEEPER_CLIENT"
         },
         {
           "name" : "NODEMANAGER"
+        },
+        {
+          "name" : "HDFS_CLIENT"
+        },
+        {
+          "name" : "YARN_CLIENT"
+        },
+        {
+          "name" : "MAPREDUCE2_CLIENT"
+        },
+        {
+          "name" : "TEZ_CLIENT"
         },
         {
           "name" : "DATANODE"
@@ -167,6 +140,6 @@
   "Blueprints" : {
     "blueprint_name" : "hdp-blueprint",
     "stack_name" : "HDP",
-    "stack_version" : "2.0"
+    "stack_version" : "2.1"
   }
 }

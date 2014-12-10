@@ -30,31 +30,31 @@ AmbariRepoPath="profiles/ambari-$AmbariVersion/ambari.repo"
 
 echo "Verifying existence of files..."
 if [[ ! -f $ProfilePath ]]; then
-  echo "  Profile $ProfilePath not found. Exiting."
+  echo " Profile $ProfilePath not found. Exiting."
   exit 0
 else
   echo " found $ProfilePath"
 fi
 if [[ ! -f $HostmapPath ]]; then
-  echo "  Hostmap $HostmapPath not found. Exiting."
+  echo " Hostmap $HostmapPath not found. Exiting."
   exit 0
 else
   echo " found $HostmapPath"
 fi
 if [[ ! -f $BlueprintPath ]]; then
-  echo "  Blueprint $BlueprintPath not found. Exiting."
+  echo " Blueprint $BlueprintPath not found. Exiting."
   exit 0
 else
   echo " found $BlueprintPath"
 fi
 if [[ ! -f $HdpRepoPath ]]; then
-  echo "  HDP Repo $HdpRepoPath not found. Exiting."
+  echo " HDP Repo $HdpRepoPath not found. Exiting."
   exit 0
 else
   echo " found $HdpRepoPath"
 fi
 if [[ ! -f $AmbariRepoPath ]]; then
-  echo "  Ambari Repo $AmbariRepoPath not found. Exiting."
+  echo " Ambari Repo $AmbariRepoPath not found. Exiting."
   exit 0
 else
   echo " found $AmbariRepoPath"
