@@ -103,6 +103,8 @@ in /etc/hosts:
 # TODO
 - Vagrant Docker provider
 - Enable security
+- Different memory settings for proxy
+- Make proxy easier to persist between clusters
 
 ----
 # Everything below is untested in my fork
