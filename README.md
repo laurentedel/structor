@@ -1,4 +1,4 @@
-HDP-Builder
+ambari-structor
 ===========
 My fork of **[Hortonworks/structor](https://github.com/hortonworks/structor)**, a set of Vagrant scripts behind a shell script interface for provisioning multi-node HDP clusters using Ambari Blueprints. An optional Squid cache is available for faster multi-node provisioning.
 
