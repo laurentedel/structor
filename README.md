@@ -9,13 +9,18 @@ The only supported OS at this time is CentOS 6 with VirtualBox provider.
 * [Vagarant](https://docs.vagrantup.com/v2/installation/)
 
 ## Modify the cluster
-Structor supports profiles that control the configuration of the
-virtual cluster.  Various built-in profiles are supplied, and new profile submissions are encouraged. A profile consists of 5 files:
-- structor profile (ex: 3node-min.profile)
-- Ambari hostmap (ex: 3node-min.hostmap)
-- Ambari blueprint (ex: hdp-2.2.0/3node-min.blueprint)
-- Ambari repo (ex: ambari-1.7.0/ambari.repo)
-- HDP repo (ex: hdp-2.2.0/hdp.repo)
+Structor determines a cluster configuration based on five 
+files stored in the profiles directory. Various built-in 
+profiles are supplied, and new profile submissions are 
+encouraged. 
+
+| config file | example path |
+|---|---|
+| Vagrant profile | profiles/3node-min.profile |
+| Ambari hostmap | profiles/3node-min.hostmap |
+| Ambari blueprint | profiles/hdp-2.2.0/3node-min.blueprint |
+| Ambari repo | profiles/ambari-1.7.0/ambari.repo |
+| HDP repo | profiles/hdp-2.2.0/hdp.repo |
 
 ## Verified combinations
 The following combinations are tested and verified to result in a working cluster.
@@ -44,9 +49,11 @@ For each host in nodes, you define the name, ip address, and the roles for
 that node. The available roles are:
 
 * ambari-server - Ambari server
-* ambari-client - member of Ambari cluster
+* ambari-client - Cluster node running ambari-agent
 * proxy-server - Squid proxy server for yum caching
 * proxy-client Squid proxy client for yum caching
+
+Additional roles for non-Ambari clusters:
 * client - client machine
 * kdc - kerberos kdc
 * nn - HDFS NameNode
