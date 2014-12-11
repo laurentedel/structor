@@ -6,7 +6,12 @@ The only supported OS at this time is CentOS 6 with VirtualBox provider.
 
 ## Dependencies
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-* [Vagarant](https://docs.vagrantup.com/v2/installation/)
+* [Vagrant](https://docs.vagrantup.com/v2/installation/)
+
+## References
+* [Ambari Blueprints docs](https://cwiki.apache.org/confluence/display/AMBARI/Blueprints)
+* [Vagrant docs](https://docs.vagrantup.com/v2/)
+* [Puppet docs](https://docs.puppetlabs.com/puppet/)
 
 ## Modify the cluster
 Structor determines a cluster configuration based on five 
@@ -27,17 +32,19 @@ The following combinations are tested and verified to result in a working cluste
 
 | HDP | 3node-min | 3node-full | 1node-min | 1node-full |
 |---|---|---|---|---|
-| 2.2.0 | YES | ? | ? | ? |
-| 2.1.7 | ? | ? | ? | ? |
+| 2.2.0 | 1.7.0 | ? | ? | ? |
+| 2.1.7 | 1.6.1 | ? | ? | ? |
 | 2.1.5 | ? | ? | ? | ? |
 | 2.1.4 | ? | ? | ? | ? |
-| 2.1.2 | ? | ? | ? | ? |
+| 2.1.2 | 1.6.0 | ? | ? | ? |
 | 2.1.1 | ? | ? | ? | ? |
 | 2.0.12 | YES | ? | ? | ? |
 | 2.0.6 | YES | ? | ? | ? |
 
 You are encouraged to contribute new working profiles that can be
 shared by others.
+
+**NOTICE** Ambari Blueprints are only supported in versions 1.6.0 and newer. If an older version of Ambari is specified, the cluster will be provisioned but components will need to be installed manually.
 
 The types of control knob in the profile file are:
 * nodes - a list of virtual machines to create
