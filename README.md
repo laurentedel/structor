@@ -38,8 +38,8 @@ The following combinations are tested and verified to result in a working cluste
 | 2.1.4 | ? | ? | ? | ? |
 | 2.1.2 | 1.6.0 | ? | ? | ? |
 | 2.1.1 | ? | ? | ? | ? |
-| 2.0.12 | YES | ? | ? | ? |
-| 2.0.6 | YES | ? | ? | ? |
+| 2.0.12 | NO | ? | ? | ? |
+| 2.0.6 | 1.6.0 | ? | ? | ? |
 
 You are encouraged to contribute new working profiles that can be
 shared by others.
