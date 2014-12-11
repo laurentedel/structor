@@ -37,7 +37,7 @@ The following combinations are tested and verified to result in a working cluste
 | 2.1.5 | 1.6.1 | 1.6.1 | ? | ? |
 | 2.1.4 | ? | ? | ? | ? |
 | 2.1.2 | 1.6.0 | ? | ? | ? |
-| 2.1.1 | ? | ? | ? | ? |
+| 2.1.1 | ? | 1.6.1 | ? | ? |
 | 2.0.12 | 1.6.1 | ? | ? | ? |
 | 2.0.6 | 1.6.0 | ? | ? | ? |
 
