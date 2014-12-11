@@ -34,11 +34,11 @@ The following combinations are tested and verified to result in a working cluste
 |---|---|---|---|---|
 | 2.2.0 | 1.7.0 | ? | ? | ? |
 | 2.1.7 | 1.6.1 | ? | ? | ? |
-| 2.1.5 | ? | ? | ? | ? |
+| 2.1.5 | 1.6.1 | ? | ? | ? |
 | 2.1.4 | ? | ? | ? | ? |
 | 2.1.2 | 1.6.0 | ? | ? | ? |
 | 2.1.1 | ? | ? | ? | ? |
-| 2.0.12 | NO | ? | ? | ? |
+| 2.0.12 | 1.6.1 | ? | ? | ? |
 | 2.0.6 | 1.6.0 | ? | ? | ? |
 
 You are encouraged to contribute new working profiles that can be
