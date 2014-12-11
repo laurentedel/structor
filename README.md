@@ -37,10 +37,11 @@ The following combinations are tested and verified to result in a working cluste
 
 | HDP | 3node-min | 3node-full | 1node-min | 1node-full |
 |---|---|---|---|---|
-| 2.2.0 | 1.7.0 | ? | ? | ? |
+| 2.2.0 | 1.7.0 | 1.7.0 | ? | ? |
 | 2.1.7 | 1.6.1 | ? | ? | ? |
 | 2.1.5 | 1.6.1 | 1.6.1 | ? | ? |
 | 2.1.4 | ? | ? | ? | ? |
+| 2.1.3 | 1.6.1 | ? | ? | ? |
 | 2.1.2 | 1.6.0 | ? | ? | ? |
 | 2.1.1 | ? | 1.6.1 | ? | ? |
 | 2.0.12 | 1.6.1 | ? | ? | ? |

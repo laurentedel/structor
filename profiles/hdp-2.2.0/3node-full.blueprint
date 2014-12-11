@@ -14,9 +14,6 @@
           "name" : "PIG"
         },
         {
-          "name" : "STORM_REST_API"
-        },
-        {
           "name" : "OOZIE_CLIENT"
         },
         {

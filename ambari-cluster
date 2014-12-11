@@ -85,14 +85,18 @@ cp -a $AmbariRepoPath files/repos/ambari.repo
 ls -l files/repos/ambari.repo | awk '{print $9 $10 $11}'
 echo ""
 
-vagrant up
+if [[ ! $NoVagrant ]]; then
+  vagrant up
+fi
 
 # Exit if using older Ambari that doesn't support Blueprints
 if [[ $AmbariMinorVersion < 6 ]]; then exit 0; fi
 
-# Allow last VM to register with Ambari Server
-#  (this needs tuning, or a better workaround)
-sleep 60
+if [[ ! $NoVagrant ]]; then
+  # Allow last VM to register with Ambari Server
+  #  (this needs tuning, or a better workaround)
+  sleep 60
+fi
 
 echo "Applying blueprint..."
 curl --user admin:admin -H 'X-Requested-By:mycompany' -X POST http://gw.example.com:8080/api/v1/blueprints/hdp-blueprint -d @${BlueprintPath}
