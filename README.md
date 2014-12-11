@@ -13,6 +13,11 @@ The only supported OS at this time is CentOS 6 with VirtualBox provider.
 * [Vagrant docs](https://docs.vagrantup.com/v2/)
 * [Puppet docs](https://docs.puppetlabs.com/puppet/)
 
+### Basic Vagrant commands
+* `vagrant status`
+* `vagrant destroy`
+* `vagrant ssh <vm-name>`
+
 ## Modify the cluster
 Structor determines a cluster configuration based on five 
 files stored in the profiles directory. Various built-in 
