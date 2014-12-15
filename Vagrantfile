@@ -55,6 +55,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm.vmx["memsize"] = profile[:vm_mem]
   end
 
+  config.vm.define "proxy" do |proxy|
+    proxy.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", profile[:proxy_vm_mem] ]
+    end
+  end
+
   profile[:nodes].each do |node|
     config.vm.define node[:hostname] do |node_config|
       node_config.vm.hostname = node[:hostname] + "." + profile[:domain]

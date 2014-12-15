@@ -3,6 +3,7 @@
   "realm": "EXAMPLE.COM",
   "security": false,
   "vm_mem": 2048,
+  "proxy_vm_mem": 1024,
   "server_mem": 300,
   "client_mem": 200,
   "clients" : [ ],
