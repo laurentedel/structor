@@ -55,9 +55,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm.vmx["memsize"] = profile[:vm_mem]
   end
 
-  config.vm.define "proxy" do |proxy|
-    proxy.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", profile[:proxy_vm_mem] ]
+  if ENV['STRUCTOR_PROXY']
+    config.vm.define "proxy" do |proxy|
+      proxy.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", profile[:proxy_vm_mem] ]
+      end
+    end
+  end
+
+  if ENV['STRUCTOR_KERBEROS']
+    config.vm.define "kdc" do |kdc|
+      kdc.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", profile[:kdc_vm_mem] ]
+      end
     end
   end
 

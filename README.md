@@ -81,6 +81,14 @@ Additional roles for non-Ambari clusters:
 Use `./ambari-cluster <hdp-version> <ambari-version> [profile-name]` to bring up the cluster. This will take 20 to 40 minutes for
 a 3 node cluster depending on your hardware and network connection.
 
+Some environment variables control more advanced usage:
+* `STRUCTOR_PROXY=true` enables the squid proxy (used by yum)
+* `STRUCTOR_KERBEROS=true` enables Kerberos on the cluster (NOT YET IMPLEMENTED)
+
+Example:
+`STRUCTOR_PROXY=true ./ambari-cluster 2.1.5 1.6.1 3node-min`
+Launches a 3-node cluster running minimal number of components from HDP 2.1.5, plus Ambari 1.6.1. A squid proxy is used for caching yum requests.
+
 Use `vagrant ssh gw` to login to the gateway machine. If you configured
 security, you'll need to kinit before you run any hadoop commands.
 
