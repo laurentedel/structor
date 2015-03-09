@@ -29,6 +29,8 @@ $profile_path = ["current.profile",
 def loadProfile()
   $profile_path.each { |file| 
     if file and File.file?(file)
+      tmpprofile = /.*\/(.*)\.profile/.match(File.readlink(file))
+      $profile_name=tmpprofile[1] + "_" + File.readlink("current.hdp") + "_" + File.readlink("current.ambari")
       puts "Loading profile %s\n" % [File.realpath(file)]
       return JSON.parse( IO.read( file ), opts = { symbolize_names: true } )
     end
@@ -74,6 +76,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   profile[:nodes].each do |node|
     config.vm.define node[:hostname] do |node_config|
       node_config.vm.hostname = node[:hostname] + "." + profile[:domain]
+      node_config.vm.provider "virtualbox" do |v|
+        v.name = "structor_" + node[:hostname] + "_" + $profile_name
+      end
       node_config.vm.network :private_network, ip: node[:ip]
       node_config.ssh.forward_agent = true
       node_config.vm.provision "puppet" do |puppet|
