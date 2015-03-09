@@ -71,7 +71,11 @@ echo ""
 
 echo "Creating symlinks..."
 if [ -L current.profile ]; then rm -f current.profile; fi
+if [ -L current.ambari ]; then rm -f current.ambari; fi
+if [ -L current.hdp ]; then rm -f current.hdp; fi
 ln -s $ProfilePath current.profile
+ln -s ambari-$AmbariVersion current.ambari
+ln -s hdp-$HdpVersion current.hdp
 ls -l current.profile | awk '{print $9 $10 $11}'
 
 if [ -L files/repos/hdp.repo ]; then rm -f files/repos/hdp.repo; fi
